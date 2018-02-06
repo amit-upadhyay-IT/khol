@@ -86,12 +86,14 @@ function get_data(filename, short_name)
 function perform_operation(file_path)
 {
     cmd.get(
-        'cd '+file_path,
+        'nautilus '+file_path,
         function(err, data, stderr) {
             if (err)
                 throw err
             else
+            {
                 console.log('changed directory to:', file_path);
+            }
         }
     );
 }

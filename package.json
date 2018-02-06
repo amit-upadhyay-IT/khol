@@ -52,6 +52,7 @@
     "openit": "cli.js",
     "savedir": "cli2.js",
     "sd": "cli2.js",
-    "goto": "gotocli.js"
+    "goto": "gotocli.js",
+    "moveto": "gotocli.js"
   }
 }
