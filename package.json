@@ -1,0 +1,46 @@
+{
+  "name": "khol",
+  "version": "0.0.0",
+  "description": "A command line utility for performing directory related tasks easily in linux",
+  "homepage": "https://github.com/amit-upadhyay-it/khol",
+  "author": {
+    "name": "Amit Upadhyay",
+    "email": "developerupadhyay@gmail.com",
+    "url": "https://github.com/amit-upadhyay-IT"
+  },
+  "files": [
+    "lib"
+  ],
+  "main": "lib/index.js",
+  "keywords": [
+    "change directory",
+    "cd",
+    "open",
+    "nautilus"
+  ],
+  "devDependencies": {
+    "coveralls": "^2.13.1",
+    "nsp": "^2.6.3",
+    "eslint": "^4.1.0",
+    "eslint-config-xo-space": "^0.16.0",
+    "jest": "^21.0.0",
+    "jest-cli": "^21.0.0"
+  },
+  "scripts": {
+    "prepublish": "nsp check",
+    "pretest": "eslint . --fix",
+    "test": "jest"
+  },
+  "eslintConfig": {
+    "extends": "xo-space",
+    "env": {
+      "jest": true,
+      "node": true
+    }
+  },
+  "repository": "amit-upadhyay-it/khol",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "license": "MIT"
+}
