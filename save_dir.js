@@ -20,15 +20,11 @@ module.exports = function (arg) {
     // making the filename
     var filename = '/home/'+username+'/.khol_cache';
 
-    // initially writing a dummy object in the file because for each
-    // new object to be inserted in the file I need to add a `,` in the beginning
-    // thus I am writing a dummy object and for every other object insert
-    // I will append a `,` before object
-    console.log('short_name', short_name);
     check_file(filename, short_name, dir_path);
 }
 
-// returns true if file is empty, else returns false
+
+// checks the file if it exists or not, if it doesn't exists then a new file is created
 function check_file(filename, short_name, dir_path)
 {
 
@@ -36,7 +32,7 @@ function check_file(filename, short_name, dir_path)
         if (err)
         {
             // need to add empty object in file
-            add_empty_object(filename, short_name, dir_path);
+            create_the_file(filename, short_name, dir_path);
         }
         else
         {
@@ -46,9 +42,10 @@ function check_file(filename, short_name, dir_path)
     });
 }
 
-function add_empty_object(filename, short_name, dir_path)
+function create_the_file(filename, short_name, dir_path)
 {
-    // adding an empty object in the file
+    // adding an empty string in the file
+    // then calling save_data function
     fs.writeFile(filename, '', function (err) {
         if (err)
             throw err;
@@ -57,47 +54,31 @@ function add_empty_object(filename, short_name, dir_path)
     });
 }
 
+
+// save the short_name and dir_path, not in JSON format but in plain string format
+// separated by `,`
 function save_data(write_filename, short_name, dir_path)
 {
-    // creating an object where I can insert short_name: dir_path
-    var data_obj = {};
-    data_obj[short_name] = dir_path;
 
     // checking if the short_name entered is already present in the cache file or not
     // append into file only if short_name doesn't exists in the file
-    console.log('short_name:', short_name);
     check_short_name(short_name, write_filename).then(function(retval) {
 
-        console.log('retval:', retval);
-
-        // inserting a , before every insert
-        fs.appendFile(write_filename, JSON.stringify(data_obj), function (err) {
-            if (err)
-                throw err;
-            else
-                console.log('Success write');
-        });
-
-
-        /*
-        if (retval)
+        if (!retval)
         {
-            // i.e. short_name already exists
-            console.log(short_name+' already exists, kindly chose some different');
-        }
-        else
-        {
-            var o = retval;
-            o[short_name] = dir_path;
             // inserting a , before every insert
-            fs.appendFile(write_filename, o, function (err) {
+            fs.appendFile(write_filename, short_name+','+dir_path+'\n', function (err) {
                 if (err)
                     throw err;
                 else
                     console.log('Success write');
             });
         }
-        */
+        else
+        {
+            // i.e. short_name already exists
+            console.log(short_name+' already exists, kindly chose something different');
+        }
     });
 }
 
@@ -106,7 +87,6 @@ function check_short_name(short_name, filename)
 {
     return new Promise(function(resolve, reject) {
 
-        console.log('check2');
         fs.readFile(filename, 'UTF-8', function(err, data) {
             if (err)
             {
@@ -115,44 +95,33 @@ function check_short_name(short_name, filename)
             }
             else
             {
-                // checing if short_name exists
-                var content = data;
-                resolve(data);
-                /*
-                if (data[short_name] == null)
-                {
-                    console.log('check4');
+                // check if file is empty or not
+                if (data === '')
                     resolve(false);
-                }
                 else
                 {
-                    console.log('check5');
-                    resolve(true);
+                    var flag = false;
+                    var content = data;
+                    // parse the content of file
+                    var lines = content.split('\n');
+                    for (var i = 0; i < lines.length; ++i)
+                    {
+                        var key = lines[i].split(',')[0];
+                        if (key == short_name)
+                        {
+                            flag = true;
+                            break;
+                        }
+                    }
+
+                    if (flag)
+                        resolve(true);  // passing true coz, I don't want the same short_name to be added again
+                    // no such short_name was found in file, so passing false as arg
+                    else
+                        resolve(false);
+
                 }
-                */
             }
         });
-
     });
-
-
-
-
-    /*
-    fs.readFile(filename, 'UTF-8', function (err, data) {
-        if (err)
-            throw err;
-        else
-        {
-            // getting the json object from the data
-            // var content = JSON.parse(data);
-            var content = data;
-            // checing if short_name exists
-            if (content.short_name === null)
-                return false;
-            else
-                return true;
-        }
-    });
-    */
 }
