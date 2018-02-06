@@ -42,5 +42,12 @@
   "jest": {
     "testEnvironment": "node"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "meow": "^4.0.0",
+    "node-cmd": "^3.0.0"
+  },
+  "bin": {
+    "khol": "cli.js"
+  }
 }
