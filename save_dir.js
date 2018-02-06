@@ -63,28 +63,57 @@ function save_data(write_filename, short_name, dir_path)
     data_obj[short_name] = dir_path;
 
     // checking if the short_name entered is already present in the cache file or not
-    var b = check_short_name(short_name, write_filename);
-
     // append into file only if short_name doesn't exists in the file
-    if (!b)
-    {
-        // inserting a , before every insert
-        fs.appendFile(write_filename, ','+JSON.stringify(data_obj), function (err) {
-            if (err)
-                throw err;
-            else
-                console.log('Success write');
-        });
-    }
-    else
-    {
-        console.log(short_name+' already exists, kindly chose some different');
-    }
+    check_short_name(short_name, write_filename).then(function(boolval) {
+        if (boolval)
+        {
+            // i.e. short_name already exists
+            console.log(short_name+' already exists, kindly chose some different');
+        }
+        else
+        {
+            // inserting a , before every insert
+            fs.appendFile(write_filename, ','+JSON.stringify(data_obj), function (err) {
+                if (err)
+                    throw err;
+                else
+                    console.log('Success write');
+            });
+        }
+    });
 }
 
 // returns true if short_name exists in the file, else return false
 function check_short_name(short_name, filename)
 {
+
+    return new Promise(function(resolve, reject) {
+
+        fs.readFile(filename, 'UTF-8', function(err, data) {
+            if (err)
+            {
+                // this should happen unless os is dealing with something really nasty
+                throw err;
+            }
+            else
+            {
+                 // getting the json object from the data
+                // var content = JSON.parse(data);
+                var content = data;
+                // checing if short_name exists
+                if (content.short_name === null)
+                    return false;
+                else
+                    return true;
+            }
+        })
+
+    });
+
+
+
+
+    /*
     fs.readFile(filename, 'UTF-8', function (err, data) {
         if (err)
             throw err;
@@ -100,4 +129,5 @@ function check_short_name(short_name, filename)
                 return true;
         }
     });
+    */
 }
