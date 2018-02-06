@@ -4,16 +4,16 @@
 ## Installation
 
 ```sh
-$ npm install --save khol
+# install the module globally
+$ npm install --global khol
 ```
 
 ## Usage
 
-```js
-const khol = require('khol');
-
-khol('Rainbow');
+```sh
+$ khol <file_name> # or <file_path>
 ```
+
 ## License
 
 MIT © [Amit Upadhyay](https://github.com/amit-upadhyay-IT)
