@@ -14,6 +14,14 @@ $ npm install --global khol
 $ khol <file_name> # or <file_path>
 ```
 
+## Example
+
+To open current directory, you can use:
+
+```sh
+$ khol .
+```
+
 ## License
 
 MIT © [Amit Upadhyay](https://github.com/amit-upadhyay-IT)
