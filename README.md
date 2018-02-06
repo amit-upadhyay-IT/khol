@@ -19,7 +19,7 @@ This package comes has 3 operations:
 
 ## Usage
 
-- Opening the directory in GUI method:
+## Opening the directory in GUI method:
 
 ```sh
 $ khol <file_name> # or <file_path>
@@ -36,7 +36,7 @@ $ khol ./Videos  # opens the Videos folder in your current directory
 $ khol .  # opens the current directory in GUI
 ```
 
-- Saving the long directory path into a short one.
+## Saving the long directory path into a short one.
 
 ```sh
 $ sd <file_path>
@@ -63,7 +63,7 @@ $ goto <short_name>
 
 ### Example
 
-- Opening the long directory path using a short name of your choice in GUI method.
+## Opening the long directory path using a short name of your choice in GUI method.
 
 ```sh
 $ goto ak_movies  # opens this `./Videos/Movies/Bollywood/NewCollection/AkshayKumar` path in GUI method.
