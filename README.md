@@ -11,7 +11,7 @@ $ npm install --global khol
 
 ## Info:
 
-This package comes has 3 operations:
+This package has 3 operations:
 
 1. Opening the directory in GUI method.
 2. Saving the long directory path into a short one.
@@ -54,7 +54,7 @@ $ sd ./Videos/Movies/Bollywood/NewCollection/AkshayKumar  ak_movies  # saves the
 $ savedir ./Videos/Movies/Bollywood/NewCollection/AkshayKumar  ak_movies  # saves the long path by mapping it to `ak_movies`.
 ```
 
-- Opening the long directory path using a short name of your choice in GUI method.
+## Opening the long directory path using a short name of your choice in GUI method.
 
 ```sh
 $ goto <short_name>
@@ -63,7 +63,6 @@ $ goto <short_name>
 
 ### Example
 
-## Opening the long directory path using a short name of your choice in GUI method.
 
 ```sh
 $ goto ak_movies  # opens this `./Videos/Movies/Bollywood/NewCollection/AkshayKumar` path in GUI method.
