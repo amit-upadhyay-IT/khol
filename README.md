@@ -1,6 +1,7 @@
 # khol [![NPM version][npm-image]][npm-url] [![Build Status][travis-image]][travis-url] [![Dependency Status][daviddm-image]][daviddm-url] [![Coverage percentage][coveralls-image]][coveralls-url]
 > A command line utility for performing directory related tasks easily in linux
 
+
 ## Installation
 
 ```sh
@@ -8,18 +9,65 @@
 $ npm install --global khol
 ```
 
+## Info:
+
+This package comes has 3 operations:
+
+1. Opening the directory in GUI method.
+2. Saving the long directory path into a short one.
+3. Opening the long directory path using a short name of your choice in GUI method.
+
 ## Usage
+
+- Opening the directory in GUI method:
 
 ```sh
 $ khol <file_name> # or <file_path>
 ```
 
-## Example
+### Example
 
-To open current directory, you can use:
+To open current directory in GUI, you can use:
 
 ```sh
-$ khol .
+$ khol ./Videos  # opens the Videos folder in your current directory
+
+# or
+$ khol .  # opens the current directory in GUI
+```
+
+- Saving the long directory path into a short one.
+
+```sh
+$ sd <file_path>
+# or
+$ savedir <file_path>
+```
+
+### Example
+
+
+```sh
+$ sd ./Videos/Movies/Bollywood/NewCollection/AkshayKumar  ak_movies  # saves the long path by mapping it to `ak_movies`.
+
+# or
+$ savedir ./Videos/Movies/Bollywood/NewCollection/AkshayKumar  ak_movies  # saves the long path by mapping it to `ak_movies`.
+```
+
+- Opening the long directory path using a short name of your choice in GUI method.
+
+```sh
+$ goto <short_name>
+
+```
+
+### Example
+
+- Opening the long directory path using a short name of your choice in GUI method.
+
+```sh
+$ goto ak_movies  # opens this `./Videos/Movies/Bollywood/NewCollection/AkshayKumar` path in GUI method.
+
 ```
 
 ## License

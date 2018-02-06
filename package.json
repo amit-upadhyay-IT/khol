@@ -1,6 +1,6 @@
 {
   "name": "khol",
-  "version": "1.0.0",
+  "version": "1.2.0",
   "description": "A command line utility for performing directory related tasks easily in linux",
   "homepage": "https://github.com/amit-upadhyay-it/khol",
   "author": {
@@ -48,11 +48,11 @@
     "node-cmd": "^3.0.0"
   },
   "bin": {
-    "khol": "cli.js",
-    "openit": "cli.js",
-    "savedir": "cli2.js",
-    "sd": "cli2.js",
-    "goto": "gotocli.js",
-    "moveto": "gotocli.js"
+    "khol": "index_cli.js",
+    "openit": "index_cli.js",
+    "savedir": "save_dir_cli.js",
+    "sd": "save_dir_cli.js",
+    "goto": "goto_cli.js",
+    "moveto": "goto_cli.js"
   }
 }
