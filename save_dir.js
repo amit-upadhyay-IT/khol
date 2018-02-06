@@ -24,6 +24,7 @@ module.exports = function (arg) {
     // new object to be inserted in the file I need to add a `,` in the beginning
     // thus I am writing a dummy object and for every other object insert
     // I will append a `,` before object
+    console.log('short_name', short_name);
     check_file(filename, short_name, dir_path);
 }
 
@@ -35,7 +36,7 @@ function check_file(filename, short_name, dir_path)
         if (err)
         {
             // need to add empty object in file
-            add_empty_object(filename);
+            add_empty_object(filename, short_name, dir_path);
         }
         else
         {
@@ -45,7 +46,7 @@ function check_file(filename, short_name, dir_path)
     });
 }
 
-function add_empty_object(filename, short_name, dir_path, username)
+function add_empty_object(filename, short_name, dir_path)
 {
     // adding an empty object in the file
     fs.writeFile(filename, '{}', function (err) {
@@ -64,7 +65,9 @@ function save_data(write_filename, short_name, dir_path)
 
     // checking if the short_name entered is already present in the cache file or not
     // append into file only if short_name doesn't exists in the file
+    console.log('short_name:', short_name);
     check_short_name(short_name, write_filename).then(function(boolval) {
+        console.log('boolval:', boolval);
         if (boolval)
         {
             // i.e. short_name already exists
@@ -86,9 +89,9 @@ function save_data(write_filename, short_name, dir_path)
 // returns true if short_name exists in the file, else return false
 function check_short_name(short_name, filename)
 {
-
     return new Promise(function(resolve, reject) {
 
+        console.log('check2');
         fs.readFile(filename, 'UTF-8', function(err, data) {
             if (err)
             {
@@ -97,14 +100,24 @@ function check_short_name(short_name, filename)
             }
             else
             {
-                 // getting the json object from the data
+                console.log('check3');
+                // getting the json object from the data
                 // var content = JSON.parse(data);
                 var content = data;
                 // checing if short_name exists
-                if (content.short_name === null)
-                    return false;
+                console.log('content:', content);
+                console.log('content[short_name]:', content[short_name]);
+                console.log('content.short_name:', content.short_name);
+                if (content[short_name] == null)
+                {
+                    console.log('check4');
+                    resolve(false);
+                }
                 else
-                    return true;
+                {
+                    console.log('check5');
+                    resolve(true);
+                }
             }
         })
 
