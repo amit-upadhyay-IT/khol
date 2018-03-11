@@ -7,7 +7,17 @@ module.exports = function(arg) {
 
     var path_string = arg[0];
 
-    if (check_if_path(arg[0])) {
+    if (typeof path_string === "undefined" || path_string === '&')
+    {
+        // console.log('path:', path_string);
+        cmd.get(
+            'nautilus ' + '.',
+            function (err, data, stderr) {
+                console.log(data);
+            }
+        );
+    }
+    else if (check_if_path(arg[0])) {
         cmd.get(
             'nautilus ' + path_string,
             function (err, data, stderr) {
